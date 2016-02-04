@@ -68,7 +68,7 @@ public class HelloWorldMDBServletClient extends HttpServlet {
 
     private static final long serialVersionUID = -8314035702649252239L;
 
-    private static final int MSG_COUNT = 5;
+    private static final int MSG_COUNT = 100;
 
     @Inject
     private JMSContext context;

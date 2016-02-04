@@ -35,6 +35,7 @@ import javax.jms.TextMessage;
 @MessageDriven(name = "HelloWorldQueueMDB", activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/HELLOWORLDMDBQueue"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+    @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "1"),
     @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
 public class HelloWorldQueueMDB implements MessageListener {
 
@@ -44,16 +45,12 @@ public class HelloWorldQueueMDB implements MessageListener {
      * @see MessageListener#onMessage(Message)
      */
     public void onMessage(Message rcvMessage) {
-        TextMessage msg = null;
+        LOGGER.info("IN");
         try {
-            if (rcvMessage instanceof TextMessage) {
-                msg = (TextMessage) rcvMessage;
-                LOGGER.info("Received Message from queue: " + msg.getText());
-            } else {
-                LOGGER.warning("Message of wrong type: " + rcvMessage.getClass().getName());
-            }
-        } catch (JMSException e) {
-            throw new RuntimeException(e);
+            Thread.sleep(50);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        LOGGER.info("OUT");
     }
 }
